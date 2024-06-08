@@ -37,21 +37,26 @@ class SymbolTable:
 
 symbol_table = SymbolTable()
 
-def check_type_expression(expr, symbol_table):
+def check_type_expression(expr):
     if isinstance(expr, tuple):
         if expr[0] == 'atribuicao':
             var_type = symbol_table.lookup(expr[1])
-            expr_type = check_type_expression(expr[2], symbol_table)
+            expr_type = check_type_expression(expr[2])
             if var_type != expr_type:
                 raise TypeError(f"Type error: cannot assign {expr_type} to {var_type}")
             return var_type
-        elif expr[0] in ('PLUS', 'MINUS', 'TIMES', 'DIV'):
-            left_type = check_type_expression(expr[1], symbol_table)
-            right_type = check_type_expression(expr[2], symbol_table)
+        elif expr[0] in ('PLUS', 'MINUS', 'TIMES', 'DIV', 'MOD'):
+            left_type = check_type_expression(expr[1])
+            right_type = check_type_expression(expr[2])
             if left_type != right_type:
                 raise TypeError(f"Type error: incompatible types {left_type} and {right_type}")
             return left_type
-        # Adicione verificações para outros tipos de expressões
+        elif expr[0] == 'func_call':
+            func_name = expr[1]
+            func_type = symbol_table.lookup(func_name)
+            if not func_type:
+                raise TypeError(f"Function {func_name} not declared")
+            return func_type
     elif isinstance(expr, int):
         return 'int'
     elif isinstance(expr, float):
@@ -61,19 +66,19 @@ def check_type_expression(expr, symbol_table):
     else:
         return symbol_table.lookup(expr)
 
-def check_declaration(decl, symbol_table):
+def check_declaration(decl):
     if decl[0] == 'declaracao_variavel':
         var_name = decl[2]
         var_type = decl[1]
         symbol_table.declare(var_name, var_type)
         if len(decl) == 4:
-            expr_type = check_type_expression(decl[3], symbol_table)
+            expr_type = check_type_expression(decl[3])
             if var_type != expr_type:
                 raise TypeError(f"Type error: cannot assign {expr_type} to {var_type}")
     elif decl[0] == 'declaracao_funcao':
-        check_function_declaration(decl, symbol_table)
+        check_function_declaration(decl)
 
-def check_function_declaration(func_decl, symbol_table):
+def check_function_declaration(func_decl):
     func_name = func_decl[1]
     func_type = func_decl[0]
     params = func_decl[2]
@@ -82,18 +87,18 @@ def check_function_declaration(func_decl, symbol_table):
     symbol_table.enter_scope()
     for param in params:
         symbol_table.declare(param[1], param[0])
-    check_block(body, symbol_table)
+    check_block(body)
     symbol_table.exit_scope()
 
-def check_block(block, symbol_table):
+def check_block(block):
     for stmt in block:
-        check_declaration(stmt, symbol_table)
+        check_declaration(stmt)
 
 def p_programa(p):
     '''programa : declaracao_list'''
     p[0] = ('programa', p[1])
     for decl in p[1]:
-        check_declaration(decl, symbol_table)
+        check_declaration(decl)
 
 def p_declaracao_list(p):
     '''declaracao_list : declaracao_list declaracao
@@ -179,10 +184,11 @@ def p_atribuicao(p):
                   | ID MOD_EQUALS expressao
                   | ID AND_EQUALS expressao
                   | ID OR_EQUALS expressao'''
-    if p[2] == '=':
-        p[0] = ('atribuicao', p[1], p[3])
-    else:
-        p[0] = ('atribuicao_composta', p[1], p[2], p[3])
+    var_type = symbol_table.lookup(p[1])
+    expr_type = check_type_expression(p[3])
+    if var_type != expr_type:
+        raise TypeError(f"Type error: cannot assign {expr_type} to {var_type}")
+    p[0] = ('atribuicao', p[1], p[3])
 
 def p_chamada_funcao(p):
     '''chamada_funcao : PRINTLN LPAREN TEXTO RPAREN SEMICOLON
@@ -274,8 +280,15 @@ def p_expressao_logica(p):
     if len(p) == 2:
         p[0] = p[1]
     elif p[1] == '!':
+        expr_type = check_type_expression(p[2])
+        if expr_type != 'boolean':
+            raise TypeError(f"Type error: cannot apply NOT to {expr_type}")
         p[0] = ('not', p[2])
     else:
+        left_type = check_type_expression(p[1])
+        right_type = check_type_expression(p[3])
+        if left_type != 'boolean' or right_type != 'boolean':
+            raise TypeError(f"Type error: AND/OR operations require boolean operands")
         p[0] = (p[2], p[1], p[3])
 
 def p_expressao_relacional(p):
@@ -289,6 +302,10 @@ def p_expressao_relacional(p):
     if len(p) == 2:
         p[0] = p[1]
     else:
+        left_type = check_type_expression(p[1])
+        right_type = check_type_expression(p[3])
+        if left_type != right_type:
+            raise TypeError(f"Type error: incompatible types {left_type} and {right_type}")
         p[0] = (p[2], p[1], p[3])
 
 def p_expressao_aritmetica(p):
@@ -298,6 +315,10 @@ def p_expressao_aritmetica(p):
     if len(p) == 2:
         p[0] = p[1]
     else:
+        left_type = check_type_expression(p[1])
+        right_type = check_type_expression(p[3])
+        if left_type != right_type:
+            raise TypeError(f"Type error: incompatible types {left_type} and {right_type}")
         p[0] = (p[2], p[1], p[3])
 
 def p_expressao_multiplicativa(p):
@@ -308,6 +329,10 @@ def p_expressao_multiplicativa(p):
     if len(p) == 2:
         p[0] = p[1]
     else:
+        left_type = check_type_expression(p[1])
+        right_type = check_type_expression(p[3])
+        if left_type != right_type:
+            raise TypeError(f"Type error: incompatible types {left_type} and {right_type}")
         p[0] = (p[2], p[1], p[3])
 
 def p_expressao_unaria(p):
@@ -318,8 +343,14 @@ def p_expressao_unaria(p):
     if len(p) == 2:
         p[0] = p[1]
     elif p[1] == '-':
+        expr_type = check_type_expression(p[2])
+        if expr_type != 'int' and expr_type != 'float':
+            raise TypeError(f"Type error: cannot negate {expr_type}")
         p[0] = ('uminus', p[2])
     else:
+        expr_type = check_type_expression(p[2])
+        if expr_type != 'int':
+            raise TypeError(f"Type error: increment/decrement operations require an integer")
         p[0] = (p[1], p[2])
 
 def p_expressao_postfix(p):
