@@ -1,0 +1,2506 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    AND_EQUALS
+    ARROW
+    BREAK
+    CONTINUE
+    DECREMENT
+    DIV_EQUALS
+    DOT
+    ELSE
+    EQ
+    GE
+    GT
+    INCREMENT
+    LE
+    LT
+    MINUS_EQUALS
+    MOD_EQUALS
+    NE
+    NOT
+    OR
+    OR_EQUALS
+    PLUS_EQUALS
+    RETURN
+    STRUCT
+    TIMES_EQUALS
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> declaracao_list
+Rule 2     declaracao_list -> declaracao_list declaracao
+Rule 3     declaracao_list -> declaracao
+Rule 4     declaracao -> declaracao_variavel
+Rule 5     declaracao -> declaracao_funcao
+Rule 6     declaracao -> estrutura_controle
+Rule 7     declaracao -> comentario
+Rule 8     declaracao -> expressao SEMICOLON
+Rule 9     declaracao_variavel -> tipo ID SEMICOLON
+Rule 10    declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON
+Rule 11    tipo -> INT
+Rule 12    tipo -> FLOAT
+Rule 13    tipo -> DOUBLE
+Rule 14    tipo -> CHAR
+Rule 15    tipo -> BOOLEAN
+Rule 16    tipo -> VOID
+Rule 17    declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco
+Rule 18    parametros -> parametro
+Rule 19    parametros -> parametro COMMA parametros
+Rule 20    parametros -> vazio
+Rule 21    parametro -> tipo ID
+Rule 22    parametro -> tipo ID LBRACKET RBRACKET
+Rule 23    parametro -> tipo DOTS ID
+Rule 24    bloco -> LBRACE declaracao_list RBRACE
+Rule 25    estrutura_controle -> if
+Rule 26    estrutura_controle -> while
+Rule 27    estrutura_controle -> for
+Rule 28    estrutura_controle -> switch
+Rule 29    if -> IF LPAREN expressao RPAREN bloco
+Rule 30    while -> WHILE LPAREN expressao RPAREN bloco
+Rule 31    for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+Rule 32    switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+Rule 33    case_list -> case_list case
+Rule 34    case_list -> case
+Rule 35    case -> CASE expressao COLON declaracao_list
+Rule 36    case -> DEFAULT COLON declaracao_list
+Rule 37    comentario -> COMMENT
+Rule 38    comentario -> MULTI_COMMENT
+Rule 39    expressao -> ID
+Rule 40    expressao -> NUM_INT
+Rule 41    expressao -> NUM_DEC
+Rule 42    expressao -> TEXTO
+Rule 43    expressao -> ID EQUALS expressao
+Rule 44    expressao -> expressao PLUS expressao
+Rule 45    expressao -> expressao MINUS expressao
+Rule 46    expressao -> expressao TIMES expressao
+Rule 47    expressao -> expressao DIV expressao
+Rule 48    expressao -> expressao MOD expressao
+Rule 49    expressao -> LPAREN expressao RPAREN
+Rule 50    expressao -> PRINTLN LPAREN TEXTO RPAREN
+Rule 51    vazio -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 
+AND_EQUALS           : 
+ARROW                : 
+BOOLEAN              : 15
+BREAK                : 
+CASE                 : 35
+CHAR                 : 14
+COLON                : 35 36
+COMMA                : 19
+COMMENT              : 37
+CONTINUE             : 
+DECREMENT            : 
+DEFAULT              : 36
+DIV                  : 47
+DIV_EQUALS           : 
+DOT                  : 
+DOTS                 : 23
+DOUBLE               : 13
+ELSE                 : 
+EQ                   : 
+EQUALS               : 10 43
+FLOAT                : 12
+FOR                  : 31
+GE                   : 
+GT                   : 
+ID                   : 9 10 17 21 22 23 39 43
+IF                   : 29
+INCREMENT            : 
+INT                  : 11
+LBRACE               : 24 32
+LBRACKET             : 22
+LE                   : 
+LPAREN               : 17 29 30 31 32 49 50
+LT                   : 
+MINUS                : 45
+MINUS_EQUALS         : 
+MOD                  : 48
+MOD_EQUALS           : 
+MULTI_COMMENT        : 38
+NE                   : 
+NOT                  : 
+NUM_DEC              : 41
+NUM_INT              : 40
+OR                   : 
+OR_EQUALS            : 
+PLUS                 : 44
+PLUS_EQUALS          : 
+PRINTLN              : 50
+RBRACE               : 24 32
+RBRACKET             : 22
+RETURN               : 
+RPAREN               : 17 29 30 31 32 49 50
+SEMICOLON            : 8 9 10 31 31
+STRUCT               : 
+SWITCH               : 32
+TEXTO                : 42 50
+TIMES                : 46
+TIMES_EQUALS         : 
+VOID                 : 16
+WHILE                : 30
+error                : 
+
+Nonterminals, with rules where they appear
+
+bloco                : 17 29 30 31
+case                 : 33 34
+case_list            : 32 33
+comentario           : 7
+declaracao           : 2 3
+declaracao_funcao    : 5
+declaracao_list      : 1 2 24 35 36
+declaracao_variavel  : 4
+estrutura_controle   : 6
+expressao            : 8 10 29 30 31 31 31 32 35 43 44 44 45 45 46 46 47 47 48 48 49
+for                  : 27
+if                   : 25
+parametro            : 18 19
+parametros           : 17 19
+programa             : 0
+switch               : 28
+tipo                 : 9 10 17 21 22 23
+vazio                : 20
+while                : 26
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . declaracao_list
+    (2) declaracao_list -> . declaracao_list declaracao
+    (3) declaracao_list -> . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    programa                       shift and go to state 1
+    declaracao_list                shift and go to state 2
+    declaracao                     shift and go to state 3
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> declaracao_list .
+    (2) declaracao_list -> declaracao_list . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    $end            reduce using rule 1 (programa -> declaracao_list .)
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    declaracao                     shift and go to state 32
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 3
+
+    (3) declaracao_list -> declaracao .
+
+    COMMENT         reduce using rule 3 (declaracao_list -> declaracao .)
+    MULTI_COMMENT   reduce using rule 3 (declaracao_list -> declaracao .)
+    ID              reduce using rule 3 (declaracao_list -> declaracao .)
+    NUM_INT         reduce using rule 3 (declaracao_list -> declaracao .)
+    NUM_DEC         reduce using rule 3 (declaracao_list -> declaracao .)
+    TEXTO           reduce using rule 3 (declaracao_list -> declaracao .)
+    LPAREN          reduce using rule 3 (declaracao_list -> declaracao .)
+    PRINTLN         reduce using rule 3 (declaracao_list -> declaracao .)
+    INT             reduce using rule 3 (declaracao_list -> declaracao .)
+    FLOAT           reduce using rule 3 (declaracao_list -> declaracao .)
+    DOUBLE          reduce using rule 3 (declaracao_list -> declaracao .)
+    CHAR            reduce using rule 3 (declaracao_list -> declaracao .)
+    BOOLEAN         reduce using rule 3 (declaracao_list -> declaracao .)
+    VOID            reduce using rule 3 (declaracao_list -> declaracao .)
+    IF              reduce using rule 3 (declaracao_list -> declaracao .)
+    WHILE           reduce using rule 3 (declaracao_list -> declaracao .)
+    FOR             reduce using rule 3 (declaracao_list -> declaracao .)
+    SWITCH          reduce using rule 3 (declaracao_list -> declaracao .)
+    $end            reduce using rule 3 (declaracao_list -> declaracao .)
+    RBRACE          reduce using rule 3 (declaracao_list -> declaracao .)
+    CASE            reduce using rule 3 (declaracao_list -> declaracao .)
+    DEFAULT         reduce using rule 3 (declaracao_list -> declaracao .)
+
+
+state 4
+
+    (4) declaracao -> declaracao_variavel .
+
+    COMMENT         reduce using rule 4 (declaracao -> declaracao_variavel .)
+    MULTI_COMMENT   reduce using rule 4 (declaracao -> declaracao_variavel .)
+    ID              reduce using rule 4 (declaracao -> declaracao_variavel .)
+    NUM_INT         reduce using rule 4 (declaracao -> declaracao_variavel .)
+    NUM_DEC         reduce using rule 4 (declaracao -> declaracao_variavel .)
+    TEXTO           reduce using rule 4 (declaracao -> declaracao_variavel .)
+    LPAREN          reduce using rule 4 (declaracao -> declaracao_variavel .)
+    PRINTLN         reduce using rule 4 (declaracao -> declaracao_variavel .)
+    INT             reduce using rule 4 (declaracao -> declaracao_variavel .)
+    FLOAT           reduce using rule 4 (declaracao -> declaracao_variavel .)
+    DOUBLE          reduce using rule 4 (declaracao -> declaracao_variavel .)
+    CHAR            reduce using rule 4 (declaracao -> declaracao_variavel .)
+    BOOLEAN         reduce using rule 4 (declaracao -> declaracao_variavel .)
+    VOID            reduce using rule 4 (declaracao -> declaracao_variavel .)
+    IF              reduce using rule 4 (declaracao -> declaracao_variavel .)
+    WHILE           reduce using rule 4 (declaracao -> declaracao_variavel .)
+    FOR             reduce using rule 4 (declaracao -> declaracao_variavel .)
+    SWITCH          reduce using rule 4 (declaracao -> declaracao_variavel .)
+    $end            reduce using rule 4 (declaracao -> declaracao_variavel .)
+    RBRACE          reduce using rule 4 (declaracao -> declaracao_variavel .)
+    CASE            reduce using rule 4 (declaracao -> declaracao_variavel .)
+    DEFAULT         reduce using rule 4 (declaracao -> declaracao_variavel .)
+
+
+state 5
+
+    (5) declaracao -> declaracao_funcao .
+
+    COMMENT         reduce using rule 5 (declaracao -> declaracao_funcao .)
+    MULTI_COMMENT   reduce using rule 5 (declaracao -> declaracao_funcao .)
+    ID              reduce using rule 5 (declaracao -> declaracao_funcao .)
+    NUM_INT         reduce using rule 5 (declaracao -> declaracao_funcao .)
+    NUM_DEC         reduce using rule 5 (declaracao -> declaracao_funcao .)
+    TEXTO           reduce using rule 5 (declaracao -> declaracao_funcao .)
+    LPAREN          reduce using rule 5 (declaracao -> declaracao_funcao .)
+    PRINTLN         reduce using rule 5 (declaracao -> declaracao_funcao .)
+    INT             reduce using rule 5 (declaracao -> declaracao_funcao .)
+    FLOAT           reduce using rule 5 (declaracao -> declaracao_funcao .)
+    DOUBLE          reduce using rule 5 (declaracao -> declaracao_funcao .)
+    CHAR            reduce using rule 5 (declaracao -> declaracao_funcao .)
+    BOOLEAN         reduce using rule 5 (declaracao -> declaracao_funcao .)
+    VOID            reduce using rule 5 (declaracao -> declaracao_funcao .)
+    IF              reduce using rule 5 (declaracao -> declaracao_funcao .)
+    WHILE           reduce using rule 5 (declaracao -> declaracao_funcao .)
+    FOR             reduce using rule 5 (declaracao -> declaracao_funcao .)
+    SWITCH          reduce using rule 5 (declaracao -> declaracao_funcao .)
+    $end            reduce using rule 5 (declaracao -> declaracao_funcao .)
+    RBRACE          reduce using rule 5 (declaracao -> declaracao_funcao .)
+    CASE            reduce using rule 5 (declaracao -> declaracao_funcao .)
+    DEFAULT         reduce using rule 5 (declaracao -> declaracao_funcao .)
+
+
+state 6
+
+    (6) declaracao -> estrutura_controle .
+
+    COMMENT         reduce using rule 6 (declaracao -> estrutura_controle .)
+    MULTI_COMMENT   reduce using rule 6 (declaracao -> estrutura_controle .)
+    ID              reduce using rule 6 (declaracao -> estrutura_controle .)
+    NUM_INT         reduce using rule 6 (declaracao -> estrutura_controle .)
+    NUM_DEC         reduce using rule 6 (declaracao -> estrutura_controle .)
+    TEXTO           reduce using rule 6 (declaracao -> estrutura_controle .)
+    LPAREN          reduce using rule 6 (declaracao -> estrutura_controle .)
+    PRINTLN         reduce using rule 6 (declaracao -> estrutura_controle .)
+    INT             reduce using rule 6 (declaracao -> estrutura_controle .)
+    FLOAT           reduce using rule 6 (declaracao -> estrutura_controle .)
+    DOUBLE          reduce using rule 6 (declaracao -> estrutura_controle .)
+    CHAR            reduce using rule 6 (declaracao -> estrutura_controle .)
+    BOOLEAN         reduce using rule 6 (declaracao -> estrutura_controle .)
+    VOID            reduce using rule 6 (declaracao -> estrutura_controle .)
+    IF              reduce using rule 6 (declaracao -> estrutura_controle .)
+    WHILE           reduce using rule 6 (declaracao -> estrutura_controle .)
+    FOR             reduce using rule 6 (declaracao -> estrutura_controle .)
+    SWITCH          reduce using rule 6 (declaracao -> estrutura_controle .)
+    $end            reduce using rule 6 (declaracao -> estrutura_controle .)
+    RBRACE          reduce using rule 6 (declaracao -> estrutura_controle .)
+    CASE            reduce using rule 6 (declaracao -> estrutura_controle .)
+    DEFAULT         reduce using rule 6 (declaracao -> estrutura_controle .)
+
+
+state 7
+
+    (7) declaracao -> comentario .
+
+    COMMENT         reduce using rule 7 (declaracao -> comentario .)
+    MULTI_COMMENT   reduce using rule 7 (declaracao -> comentario .)
+    ID              reduce using rule 7 (declaracao -> comentario .)
+    NUM_INT         reduce using rule 7 (declaracao -> comentario .)
+    NUM_DEC         reduce using rule 7 (declaracao -> comentario .)
+    TEXTO           reduce using rule 7 (declaracao -> comentario .)
+    LPAREN          reduce using rule 7 (declaracao -> comentario .)
+    PRINTLN         reduce using rule 7 (declaracao -> comentario .)
+    INT             reduce using rule 7 (declaracao -> comentario .)
+    FLOAT           reduce using rule 7 (declaracao -> comentario .)
+    DOUBLE          reduce using rule 7 (declaracao -> comentario .)
+    CHAR            reduce using rule 7 (declaracao -> comentario .)
+    BOOLEAN         reduce using rule 7 (declaracao -> comentario .)
+    VOID            reduce using rule 7 (declaracao -> comentario .)
+    IF              reduce using rule 7 (declaracao -> comentario .)
+    WHILE           reduce using rule 7 (declaracao -> comentario .)
+    FOR             reduce using rule 7 (declaracao -> comentario .)
+    SWITCH          reduce using rule 7 (declaracao -> comentario .)
+    $end            reduce using rule 7 (declaracao -> comentario .)
+    RBRACE          reduce using rule 7 (declaracao -> comentario .)
+    CASE            reduce using rule 7 (declaracao -> comentario .)
+    DEFAULT         reduce using rule 7 (declaracao -> comentario .)
+
+
+state 8
+
+    (8) declaracao -> expressao . SEMICOLON
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       shift and go to state 33
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 9
+
+    (9) declaracao_variavel -> tipo . ID SEMICOLON
+    (10) declaracao_variavel -> tipo . ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> tipo . ID LPAREN parametros RPAREN bloco
+
+    ID              shift and go to state 39
+
+
+state 10
+
+    (39) expressao -> ID .
+    (43) expressao -> ID . EQUALS expressao
+
+    SEMICOLON       reduce using rule 39 (expressao -> ID .)
+    PLUS            reduce using rule 39 (expressao -> ID .)
+    MINUS           reduce using rule 39 (expressao -> ID .)
+    TIMES           reduce using rule 39 (expressao -> ID .)
+    DIV             reduce using rule 39 (expressao -> ID .)
+    MOD             reduce using rule 39 (expressao -> ID .)
+    RPAREN          reduce using rule 39 (expressao -> ID .)
+    COLON           reduce using rule 39 (expressao -> ID .)
+    EQUALS          shift and go to state 40
+
+
+state 11
+
+    (49) expressao -> LPAREN . expressao RPAREN
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 41
+
+state 12
+
+    (25) estrutura_controle -> if .
+
+    COMMENT         reduce using rule 25 (estrutura_controle -> if .)
+    MULTI_COMMENT   reduce using rule 25 (estrutura_controle -> if .)
+    ID              reduce using rule 25 (estrutura_controle -> if .)
+    NUM_INT         reduce using rule 25 (estrutura_controle -> if .)
+    NUM_DEC         reduce using rule 25 (estrutura_controle -> if .)
+    TEXTO           reduce using rule 25 (estrutura_controle -> if .)
+    LPAREN          reduce using rule 25 (estrutura_controle -> if .)
+    PRINTLN         reduce using rule 25 (estrutura_controle -> if .)
+    INT             reduce using rule 25 (estrutura_controle -> if .)
+    FLOAT           reduce using rule 25 (estrutura_controle -> if .)
+    DOUBLE          reduce using rule 25 (estrutura_controle -> if .)
+    CHAR            reduce using rule 25 (estrutura_controle -> if .)
+    BOOLEAN         reduce using rule 25 (estrutura_controle -> if .)
+    VOID            reduce using rule 25 (estrutura_controle -> if .)
+    IF              reduce using rule 25 (estrutura_controle -> if .)
+    WHILE           reduce using rule 25 (estrutura_controle -> if .)
+    FOR             reduce using rule 25 (estrutura_controle -> if .)
+    SWITCH          reduce using rule 25 (estrutura_controle -> if .)
+    $end            reduce using rule 25 (estrutura_controle -> if .)
+    RBRACE          reduce using rule 25 (estrutura_controle -> if .)
+    CASE            reduce using rule 25 (estrutura_controle -> if .)
+    DEFAULT         reduce using rule 25 (estrutura_controle -> if .)
+
+
+state 13
+
+    (26) estrutura_controle -> while .
+
+    COMMENT         reduce using rule 26 (estrutura_controle -> while .)
+    MULTI_COMMENT   reduce using rule 26 (estrutura_controle -> while .)
+    ID              reduce using rule 26 (estrutura_controle -> while .)
+    NUM_INT         reduce using rule 26 (estrutura_controle -> while .)
+    NUM_DEC         reduce using rule 26 (estrutura_controle -> while .)
+    TEXTO           reduce using rule 26 (estrutura_controle -> while .)
+    LPAREN          reduce using rule 26 (estrutura_controle -> while .)
+    PRINTLN         reduce using rule 26 (estrutura_controle -> while .)
+    INT             reduce using rule 26 (estrutura_controle -> while .)
+    FLOAT           reduce using rule 26 (estrutura_controle -> while .)
+    DOUBLE          reduce using rule 26 (estrutura_controle -> while .)
+    CHAR            reduce using rule 26 (estrutura_controle -> while .)
+    BOOLEAN         reduce using rule 26 (estrutura_controle -> while .)
+    VOID            reduce using rule 26 (estrutura_controle -> while .)
+    IF              reduce using rule 26 (estrutura_controle -> while .)
+    WHILE           reduce using rule 26 (estrutura_controle -> while .)
+    FOR             reduce using rule 26 (estrutura_controle -> while .)
+    SWITCH          reduce using rule 26 (estrutura_controle -> while .)
+    $end            reduce using rule 26 (estrutura_controle -> while .)
+    RBRACE          reduce using rule 26 (estrutura_controle -> while .)
+    CASE            reduce using rule 26 (estrutura_controle -> while .)
+    DEFAULT         reduce using rule 26 (estrutura_controle -> while .)
+
+
+state 14
+
+    (27) estrutura_controle -> for .
+
+    COMMENT         reduce using rule 27 (estrutura_controle -> for .)
+    MULTI_COMMENT   reduce using rule 27 (estrutura_controle -> for .)
+    ID              reduce using rule 27 (estrutura_controle -> for .)
+    NUM_INT         reduce using rule 27 (estrutura_controle -> for .)
+    NUM_DEC         reduce using rule 27 (estrutura_controle -> for .)
+    TEXTO           reduce using rule 27 (estrutura_controle -> for .)
+    LPAREN          reduce using rule 27 (estrutura_controle -> for .)
+    PRINTLN         reduce using rule 27 (estrutura_controle -> for .)
+    INT             reduce using rule 27 (estrutura_controle -> for .)
+    FLOAT           reduce using rule 27 (estrutura_controle -> for .)
+    DOUBLE          reduce using rule 27 (estrutura_controle -> for .)
+    CHAR            reduce using rule 27 (estrutura_controle -> for .)
+    BOOLEAN         reduce using rule 27 (estrutura_controle -> for .)
+    VOID            reduce using rule 27 (estrutura_controle -> for .)
+    IF              reduce using rule 27 (estrutura_controle -> for .)
+    WHILE           reduce using rule 27 (estrutura_controle -> for .)
+    FOR             reduce using rule 27 (estrutura_controle -> for .)
+    SWITCH          reduce using rule 27 (estrutura_controle -> for .)
+    $end            reduce using rule 27 (estrutura_controle -> for .)
+    RBRACE          reduce using rule 27 (estrutura_controle -> for .)
+    CASE            reduce using rule 27 (estrutura_controle -> for .)
+    DEFAULT         reduce using rule 27 (estrutura_controle -> for .)
+
+
+state 15
+
+    (28) estrutura_controle -> switch .
+
+    COMMENT         reduce using rule 28 (estrutura_controle -> switch .)
+    MULTI_COMMENT   reduce using rule 28 (estrutura_controle -> switch .)
+    ID              reduce using rule 28 (estrutura_controle -> switch .)
+    NUM_INT         reduce using rule 28 (estrutura_controle -> switch .)
+    NUM_DEC         reduce using rule 28 (estrutura_controle -> switch .)
+    TEXTO           reduce using rule 28 (estrutura_controle -> switch .)
+    LPAREN          reduce using rule 28 (estrutura_controle -> switch .)
+    PRINTLN         reduce using rule 28 (estrutura_controle -> switch .)
+    INT             reduce using rule 28 (estrutura_controle -> switch .)
+    FLOAT           reduce using rule 28 (estrutura_controle -> switch .)
+    DOUBLE          reduce using rule 28 (estrutura_controle -> switch .)
+    CHAR            reduce using rule 28 (estrutura_controle -> switch .)
+    BOOLEAN         reduce using rule 28 (estrutura_controle -> switch .)
+    VOID            reduce using rule 28 (estrutura_controle -> switch .)
+    IF              reduce using rule 28 (estrutura_controle -> switch .)
+    WHILE           reduce using rule 28 (estrutura_controle -> switch .)
+    FOR             reduce using rule 28 (estrutura_controle -> switch .)
+    SWITCH          reduce using rule 28 (estrutura_controle -> switch .)
+    $end            reduce using rule 28 (estrutura_controle -> switch .)
+    RBRACE          reduce using rule 28 (estrutura_controle -> switch .)
+    CASE            reduce using rule 28 (estrutura_controle -> switch .)
+    DEFAULT         reduce using rule 28 (estrutura_controle -> switch .)
+
+
+state 16
+
+    (37) comentario -> COMMENT .
+
+    COMMENT         reduce using rule 37 (comentario -> COMMENT .)
+    MULTI_COMMENT   reduce using rule 37 (comentario -> COMMENT .)
+    ID              reduce using rule 37 (comentario -> COMMENT .)
+    NUM_INT         reduce using rule 37 (comentario -> COMMENT .)
+    NUM_DEC         reduce using rule 37 (comentario -> COMMENT .)
+    TEXTO           reduce using rule 37 (comentario -> COMMENT .)
+    LPAREN          reduce using rule 37 (comentario -> COMMENT .)
+    PRINTLN         reduce using rule 37 (comentario -> COMMENT .)
+    INT             reduce using rule 37 (comentario -> COMMENT .)
+    FLOAT           reduce using rule 37 (comentario -> COMMENT .)
+    DOUBLE          reduce using rule 37 (comentario -> COMMENT .)
+    CHAR            reduce using rule 37 (comentario -> COMMENT .)
+    BOOLEAN         reduce using rule 37 (comentario -> COMMENT .)
+    VOID            reduce using rule 37 (comentario -> COMMENT .)
+    IF              reduce using rule 37 (comentario -> COMMENT .)
+    WHILE           reduce using rule 37 (comentario -> COMMENT .)
+    FOR             reduce using rule 37 (comentario -> COMMENT .)
+    SWITCH          reduce using rule 37 (comentario -> COMMENT .)
+    $end            reduce using rule 37 (comentario -> COMMENT .)
+    RBRACE          reduce using rule 37 (comentario -> COMMENT .)
+    CASE            reduce using rule 37 (comentario -> COMMENT .)
+    DEFAULT         reduce using rule 37 (comentario -> COMMENT .)
+
+
+state 17
+
+    (38) comentario -> MULTI_COMMENT .
+
+    COMMENT         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    MULTI_COMMENT   reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    ID              reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    NUM_INT         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    NUM_DEC         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    TEXTO           reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    LPAREN          reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    PRINTLN         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    INT             reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    FLOAT           reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    DOUBLE          reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    CHAR            reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    BOOLEAN         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    VOID            reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    IF              reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    WHILE           reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    FOR             reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    SWITCH          reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    $end            reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    RBRACE          reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    CASE            reduce using rule 38 (comentario -> MULTI_COMMENT .)
+    DEFAULT         reduce using rule 38 (comentario -> MULTI_COMMENT .)
+
+
+state 18
+
+    (40) expressao -> NUM_INT .
+
+    SEMICOLON       reduce using rule 40 (expressao -> NUM_INT .)
+    PLUS            reduce using rule 40 (expressao -> NUM_INT .)
+    MINUS           reduce using rule 40 (expressao -> NUM_INT .)
+    TIMES           reduce using rule 40 (expressao -> NUM_INT .)
+    DIV             reduce using rule 40 (expressao -> NUM_INT .)
+    MOD             reduce using rule 40 (expressao -> NUM_INT .)
+    RPAREN          reduce using rule 40 (expressao -> NUM_INT .)
+    COLON           reduce using rule 40 (expressao -> NUM_INT .)
+
+
+state 19
+
+    (41) expressao -> NUM_DEC .
+
+    SEMICOLON       reduce using rule 41 (expressao -> NUM_DEC .)
+    PLUS            reduce using rule 41 (expressao -> NUM_DEC .)
+    MINUS           reduce using rule 41 (expressao -> NUM_DEC .)
+    TIMES           reduce using rule 41 (expressao -> NUM_DEC .)
+    DIV             reduce using rule 41 (expressao -> NUM_DEC .)
+    MOD             reduce using rule 41 (expressao -> NUM_DEC .)
+    RPAREN          reduce using rule 41 (expressao -> NUM_DEC .)
+    COLON           reduce using rule 41 (expressao -> NUM_DEC .)
+
+
+state 20
+
+    (42) expressao -> TEXTO .
+
+    SEMICOLON       reduce using rule 42 (expressao -> TEXTO .)
+    PLUS            reduce using rule 42 (expressao -> TEXTO .)
+    MINUS           reduce using rule 42 (expressao -> TEXTO .)
+    TIMES           reduce using rule 42 (expressao -> TEXTO .)
+    DIV             reduce using rule 42 (expressao -> TEXTO .)
+    MOD             reduce using rule 42 (expressao -> TEXTO .)
+    RPAREN          reduce using rule 42 (expressao -> TEXTO .)
+    COLON           reduce using rule 42 (expressao -> TEXTO .)
+
+
+state 21
+
+    (50) expressao -> PRINTLN . LPAREN TEXTO RPAREN
+
+    LPAREN          shift and go to state 42
+
+
+state 22
+
+    (11) tipo -> INT .
+
+    ID              reduce using rule 11 (tipo -> INT .)
+    DOTS            reduce using rule 11 (tipo -> INT .)
+
+
+state 23
+
+    (12) tipo -> FLOAT .
+
+    ID              reduce using rule 12 (tipo -> FLOAT .)
+    DOTS            reduce using rule 12 (tipo -> FLOAT .)
+
+
+state 24
+
+    (13) tipo -> DOUBLE .
+
+    ID              reduce using rule 13 (tipo -> DOUBLE .)
+    DOTS            reduce using rule 13 (tipo -> DOUBLE .)
+
+
+state 25
+
+    (14) tipo -> CHAR .
+
+    ID              reduce using rule 14 (tipo -> CHAR .)
+    DOTS            reduce using rule 14 (tipo -> CHAR .)
+
+
+state 26
+
+    (15) tipo -> BOOLEAN .
+
+    ID              reduce using rule 15 (tipo -> BOOLEAN .)
+    DOTS            reduce using rule 15 (tipo -> BOOLEAN .)
+
+
+state 27
+
+    (16) tipo -> VOID .
+
+    ID              reduce using rule 16 (tipo -> VOID .)
+    DOTS            reduce using rule 16 (tipo -> VOID .)
+
+
+state 28
+
+    (29) if -> IF . LPAREN expressao RPAREN bloco
+
+    LPAREN          shift and go to state 43
+
+
+state 29
+
+    (30) while -> WHILE . LPAREN expressao RPAREN bloco
+
+    LPAREN          shift and go to state 44
+
+
+state 30
+
+    (31) for -> FOR . LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+
+    LPAREN          shift and go to state 45
+
+
+state 31
+
+    (32) switch -> SWITCH . LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    LPAREN          shift and go to state 46
+
+
+state 32
+
+    (2) declaracao_list -> declaracao_list declaracao .
+
+    COMMENT         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    MULTI_COMMENT   reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    ID              reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    NUM_INT         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    NUM_DEC         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    TEXTO           reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    LPAREN          reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    PRINTLN         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    INT             reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    FLOAT           reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    DOUBLE          reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    CHAR            reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    BOOLEAN         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    VOID            reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    IF              reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    WHILE           reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    FOR             reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    SWITCH          reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    $end            reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    RBRACE          reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    CASE            reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+    DEFAULT         reduce using rule 2 (declaracao_list -> declaracao_list declaracao .)
+
+
+state 33
+
+    (8) declaracao -> expressao SEMICOLON .
+
+    COMMENT         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    MULTI_COMMENT   reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    ID              reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    NUM_INT         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    NUM_DEC         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    TEXTO           reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    LPAREN          reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    PRINTLN         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    INT             reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    FLOAT           reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    DOUBLE          reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    CHAR            reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    BOOLEAN         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    VOID            reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    IF              reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    WHILE           reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    FOR             reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    SWITCH          reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    $end            reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    RBRACE          reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    CASE            reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+    DEFAULT         reduce using rule 8 (declaracao -> expressao SEMICOLON .)
+
+
+state 34
+
+    (44) expressao -> expressao PLUS . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 47
+
+state 35
+
+    (45) expressao -> expressao MINUS . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 48
+
+state 36
+
+    (46) expressao -> expressao TIMES . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 49
+
+state 37
+
+    (47) expressao -> expressao DIV . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 50
+
+state 38
+
+    (48) expressao -> expressao MOD . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 51
+
+state 39
+
+    (9) declaracao_variavel -> tipo ID . SEMICOLON
+    (10) declaracao_variavel -> tipo ID . EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> tipo ID . LPAREN parametros RPAREN bloco
+
+    SEMICOLON       shift and go to state 52
+    EQUALS          shift and go to state 53
+    LPAREN          shift and go to state 54
+
+
+state 40
+
+    (43) expressao -> ID EQUALS . expressao
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 55
+
+state 41
+
+    (49) expressao -> LPAREN expressao . RPAREN
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    RPAREN          shift and go to state 56
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 42
+
+    (50) expressao -> PRINTLN LPAREN . TEXTO RPAREN
+
+    TEXTO           shift and go to state 57
+
+
+state 43
+
+    (29) if -> IF LPAREN . expressao RPAREN bloco
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 58
+
+state 44
+
+    (30) while -> WHILE LPAREN . expressao RPAREN bloco
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 59
+
+state 45
+
+    (31) for -> FOR LPAREN . expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 60
+
+state 46
+
+    (32) switch -> SWITCH LPAREN . expressao RPAREN LBRACE case_list RBRACE
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 61
+
+state 47
+
+    (44) expressao -> expressao PLUS expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       reduce using rule 44 (expressao -> expressao PLUS expressao .)
+    PLUS            reduce using rule 44 (expressao -> expressao PLUS expressao .)
+    MINUS           reduce using rule 44 (expressao -> expressao PLUS expressao .)
+    RPAREN          reduce using rule 44 (expressao -> expressao PLUS expressao .)
+    COLON           reduce using rule 44 (expressao -> expressao PLUS expressao .)
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+  ! TIMES           [ reduce using rule 44 (expressao -> expressao PLUS expressao .) ]
+  ! DIV             [ reduce using rule 44 (expressao -> expressao PLUS expressao .) ]
+  ! MOD             [ reduce using rule 44 (expressao -> expressao PLUS expressao .) ]
+  ! PLUS            [ shift and go to state 34 ]
+  ! MINUS           [ shift and go to state 35 ]
+
+
+state 48
+
+    (45) expressao -> expressao MINUS expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       reduce using rule 45 (expressao -> expressao MINUS expressao .)
+    PLUS            reduce using rule 45 (expressao -> expressao MINUS expressao .)
+    MINUS           reduce using rule 45 (expressao -> expressao MINUS expressao .)
+    RPAREN          reduce using rule 45 (expressao -> expressao MINUS expressao .)
+    COLON           reduce using rule 45 (expressao -> expressao MINUS expressao .)
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+  ! TIMES           [ reduce using rule 45 (expressao -> expressao MINUS expressao .) ]
+  ! DIV             [ reduce using rule 45 (expressao -> expressao MINUS expressao .) ]
+  ! MOD             [ reduce using rule 45 (expressao -> expressao MINUS expressao .) ]
+  ! PLUS            [ shift and go to state 34 ]
+  ! MINUS           [ shift and go to state 35 ]
+
+
+state 49
+
+    (46) expressao -> expressao TIMES expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    PLUS            reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    MINUS           reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    TIMES           reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    DIV             reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    MOD             reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    RPAREN          reduce using rule 46 (expressao -> expressao TIMES expressao .)
+    COLON           reduce using rule 46 (expressao -> expressao TIMES expressao .)
+
+  ! PLUS            [ shift and go to state 34 ]
+  ! MINUS           [ shift and go to state 35 ]
+  ! TIMES           [ shift and go to state 36 ]
+  ! DIV             [ shift and go to state 37 ]
+  ! MOD             [ shift and go to state 38 ]
+
+
+state 50
+
+    (47) expressao -> expressao DIV expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       reduce using rule 47 (expressao -> expressao DIV expressao .)
+    PLUS            reduce using rule 47 (expressao -> expressao DIV expressao .)
+    MINUS           reduce using rule 47 (expressao -> expressao DIV expressao .)
+    TIMES           reduce using rule 47 (expressao -> expressao DIV expressao .)
+    DIV             reduce using rule 47 (expressao -> expressao DIV expressao .)
+    MOD             reduce using rule 47 (expressao -> expressao DIV expressao .)
+    RPAREN          reduce using rule 47 (expressao -> expressao DIV expressao .)
+    COLON           reduce using rule 47 (expressao -> expressao DIV expressao .)
+
+  ! PLUS            [ shift and go to state 34 ]
+  ! MINUS           [ shift and go to state 35 ]
+  ! TIMES           [ shift and go to state 36 ]
+  ! DIV             [ shift and go to state 37 ]
+  ! MOD             [ shift and go to state 38 ]
+
+
+state 51
+
+    (48) expressao -> expressao MOD expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       reduce using rule 48 (expressao -> expressao MOD expressao .)
+    PLUS            reduce using rule 48 (expressao -> expressao MOD expressao .)
+    MINUS           reduce using rule 48 (expressao -> expressao MOD expressao .)
+    TIMES           reduce using rule 48 (expressao -> expressao MOD expressao .)
+    DIV             reduce using rule 48 (expressao -> expressao MOD expressao .)
+    MOD             reduce using rule 48 (expressao -> expressao MOD expressao .)
+    RPAREN          reduce using rule 48 (expressao -> expressao MOD expressao .)
+    COLON           reduce using rule 48 (expressao -> expressao MOD expressao .)
+
+  ! PLUS            [ shift and go to state 34 ]
+  ! MINUS           [ shift and go to state 35 ]
+  ! TIMES           [ shift and go to state 36 ]
+  ! DIV             [ shift and go to state 37 ]
+  ! MOD             [ shift and go to state 38 ]
+
+
+state 52
+
+    (9) declaracao_variavel -> tipo ID SEMICOLON .
+
+    COMMENT         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    MULTI_COMMENT   reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    ID              reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    NUM_INT         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    NUM_DEC         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    TEXTO           reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    LPAREN          reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    PRINTLN         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    INT             reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    FLOAT           reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    DOUBLE          reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    CHAR            reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    BOOLEAN         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    VOID            reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    IF              reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    WHILE           reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    FOR             reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    SWITCH          reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    $end            reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    RBRACE          reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    CASE            reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+    DEFAULT         reduce using rule 9 (declaracao_variavel -> tipo ID SEMICOLON .)
+
+
+state 53
+
+    (10) declaracao_variavel -> tipo ID EQUALS . expressao SEMICOLON
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 62
+
+state 54
+
+    (17) declaracao_funcao -> tipo ID LPAREN . parametros RPAREN bloco
+    (18) parametros -> . parametro
+    (19) parametros -> . parametro COMMA parametros
+    (20) parametros -> . vazio
+    (21) parametro -> . tipo ID
+    (22) parametro -> . tipo ID LBRACKET RBRACKET
+    (23) parametro -> . tipo DOTS ID
+    (51) vazio -> .
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+
+    RPAREN          reduce using rule 51 (vazio -> .)
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+
+    tipo                           shift and go to state 63
+    parametros                     shift and go to state 64
+    parametro                      shift and go to state 65
+    vazio                          shift and go to state 66
+
+state 55
+
+    (43) expressao -> ID EQUALS expressao .
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+    SEMICOLON       reduce using rule 43 (expressao -> ID EQUALS expressao .)
+    RPAREN          reduce using rule 43 (expressao -> ID EQUALS expressao .)
+    COLON           reduce using rule 43 (expressao -> ID EQUALS expressao .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+  ! PLUS            [ reduce using rule 43 (expressao -> ID EQUALS expressao .) ]
+  ! MINUS           [ reduce using rule 43 (expressao -> ID EQUALS expressao .) ]
+  ! TIMES           [ reduce using rule 43 (expressao -> ID EQUALS expressao .) ]
+  ! DIV             [ reduce using rule 43 (expressao -> ID EQUALS expressao .) ]
+  ! MOD             [ reduce using rule 43 (expressao -> ID EQUALS expressao .) ]
+
+
+state 56
+
+    (49) expressao -> LPAREN expressao RPAREN .
+
+    SEMICOLON       reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    PLUS            reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    MINUS           reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    TIMES           reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    DIV             reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    MOD             reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    RPAREN          reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+    COLON           reduce using rule 49 (expressao -> LPAREN expressao RPAREN .)
+
+
+state 57
+
+    (50) expressao -> PRINTLN LPAREN TEXTO . RPAREN
+
+    RPAREN          shift and go to state 67
+
+
+state 58
+
+    (29) if -> IF LPAREN expressao . RPAREN bloco
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    RPAREN          shift and go to state 68
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 59
+
+    (30) while -> WHILE LPAREN expressao . RPAREN bloco
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    RPAREN          shift and go to state 69
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 60
+
+    (31) for -> FOR LPAREN expressao . SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       shift and go to state 70
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 61
+
+    (32) switch -> SWITCH LPAREN expressao . RPAREN LBRACE case_list RBRACE
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    RPAREN          shift and go to state 71
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 62
+
+    (10) declaracao_variavel -> tipo ID EQUALS expressao . SEMICOLON
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       shift and go to state 72
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 63
+
+    (21) parametro -> tipo . ID
+    (22) parametro -> tipo . ID LBRACKET RBRACKET
+    (23) parametro -> tipo . DOTS ID
+
+    ID              shift and go to state 73
+    DOTS            shift and go to state 74
+
+
+state 64
+
+    (17) declaracao_funcao -> tipo ID LPAREN parametros . RPAREN bloco
+
+    RPAREN          shift and go to state 75
+
+
+state 65
+
+    (18) parametros -> parametro .
+    (19) parametros -> parametro . COMMA parametros
+
+    RPAREN          reduce using rule 18 (parametros -> parametro .)
+    COMMA           shift and go to state 76
+
+
+state 66
+
+    (20) parametros -> vazio .
+
+    RPAREN          reduce using rule 20 (parametros -> vazio .)
+
+
+state 67
+
+    (50) expressao -> PRINTLN LPAREN TEXTO RPAREN .
+
+    SEMICOLON       reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    PLUS            reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    MINUS           reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    TIMES           reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    DIV             reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    MOD             reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    RPAREN          reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+    COLON           reduce using rule 50 (expressao -> PRINTLN LPAREN TEXTO RPAREN .)
+
+
+state 68
+
+    (29) if -> IF LPAREN expressao RPAREN . bloco
+    (24) bloco -> . LBRACE declaracao_list RBRACE
+
+    LBRACE          shift and go to state 78
+
+    bloco                          shift and go to state 77
+
+state 69
+
+    (30) while -> WHILE LPAREN expressao RPAREN . bloco
+    (24) bloco -> . LBRACE declaracao_list RBRACE
+
+    LBRACE          shift and go to state 78
+
+    bloco                          shift and go to state 79
+
+state 70
+
+    (31) for -> FOR LPAREN expressao SEMICOLON . expressao SEMICOLON expressao RPAREN bloco
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 80
+
+state 71
+
+    (32) switch -> SWITCH LPAREN expressao RPAREN . LBRACE case_list RBRACE
+
+    LBRACE          shift and go to state 81
+
+
+state 72
+
+    (10) declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .
+
+    COMMENT         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    MULTI_COMMENT   reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    ID              reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    NUM_INT         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    NUM_DEC         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    TEXTO           reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    LPAREN          reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    PRINTLN         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    INT             reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    FLOAT           reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    DOUBLE          reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    CHAR            reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    BOOLEAN         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    VOID            reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    IF              reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    WHILE           reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    FOR             reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    SWITCH          reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    $end            reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    RBRACE          reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    CASE            reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+    DEFAULT         reduce using rule 10 (declaracao_variavel -> tipo ID EQUALS expressao SEMICOLON .)
+
+
+state 73
+
+    (21) parametro -> tipo ID .
+    (22) parametro -> tipo ID . LBRACKET RBRACKET
+
+    COMMA           reduce using rule 21 (parametro -> tipo ID .)
+    RPAREN          reduce using rule 21 (parametro -> tipo ID .)
+    LBRACKET        shift and go to state 82
+
+
+state 74
+
+    (23) parametro -> tipo DOTS . ID
+
+    ID              shift and go to state 83
+
+
+state 75
+
+    (17) declaracao_funcao -> tipo ID LPAREN parametros RPAREN . bloco
+    (24) bloco -> . LBRACE declaracao_list RBRACE
+
+    LBRACE          shift and go to state 78
+
+    bloco                          shift and go to state 84
+
+state 76
+
+    (19) parametros -> parametro COMMA . parametros
+    (18) parametros -> . parametro
+    (19) parametros -> . parametro COMMA parametros
+    (20) parametros -> . vazio
+    (21) parametro -> . tipo ID
+    (22) parametro -> . tipo ID LBRACKET RBRACKET
+    (23) parametro -> . tipo DOTS ID
+    (51) vazio -> .
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+
+    RPAREN          reduce using rule 51 (vazio -> .)
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+
+    parametro                      shift and go to state 65
+    parametros                     shift and go to state 85
+    vazio                          shift and go to state 66
+    tipo                           shift and go to state 63
+
+state 77
+
+    (29) if -> IF LPAREN expressao RPAREN bloco .
+
+    COMMENT         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    MULTI_COMMENT   reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    ID              reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    NUM_INT         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    NUM_DEC         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    TEXTO           reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    LPAREN          reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    PRINTLN         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    INT             reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    FLOAT           reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    DOUBLE          reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    CHAR            reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    BOOLEAN         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    VOID            reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    IF              reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    WHILE           reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    FOR             reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    SWITCH          reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    $end            reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    RBRACE          reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    CASE            reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+    DEFAULT         reduce using rule 29 (if -> IF LPAREN expressao RPAREN bloco .)
+
+
+state 78
+
+    (24) bloco -> LBRACE . declaracao_list RBRACE
+    (2) declaracao_list -> . declaracao_list declaracao
+    (3) declaracao_list -> . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    declaracao_list                shift and go to state 86
+    declaracao                     shift and go to state 3
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 79
+
+    (30) while -> WHILE LPAREN expressao RPAREN bloco .
+
+    COMMENT         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    MULTI_COMMENT   reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    ID              reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    NUM_INT         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    NUM_DEC         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    TEXTO           reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    LPAREN          reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    PRINTLN         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    INT             reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    FLOAT           reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    DOUBLE          reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    CHAR            reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    BOOLEAN         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    VOID            reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    IF              reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    WHILE           reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    FOR             reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    SWITCH          reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    $end            reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    RBRACE          reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    CASE            reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+    DEFAULT         reduce using rule 30 (while -> WHILE LPAREN expressao RPAREN bloco .)
+
+
+state 80
+
+    (31) for -> FOR LPAREN expressao SEMICOLON expressao . SEMICOLON expressao RPAREN bloco
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    SEMICOLON       shift and go to state 87
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 81
+
+    (32) switch -> SWITCH LPAREN expressao RPAREN LBRACE . case_list RBRACE
+    (33) case_list -> . case_list case
+    (34) case_list -> . case
+    (35) case -> . CASE expressao COLON declaracao_list
+    (36) case -> . DEFAULT COLON declaracao_list
+
+    CASE            shift and go to state 90
+    DEFAULT         shift and go to state 91
+
+    case_list                      shift and go to state 88
+    case                           shift and go to state 89
+
+state 82
+
+    (22) parametro -> tipo ID LBRACKET . RBRACKET
+
+    RBRACKET        shift and go to state 92
+
+
+state 83
+
+    (23) parametro -> tipo DOTS ID .
+
+    COMMA           reduce using rule 23 (parametro -> tipo DOTS ID .)
+    RPAREN          reduce using rule 23 (parametro -> tipo DOTS ID .)
+
+
+state 84
+
+    (17) declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .
+
+    COMMENT         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    MULTI_COMMENT   reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    ID              reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    NUM_INT         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    NUM_DEC         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    TEXTO           reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    LPAREN          reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    PRINTLN         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    INT             reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    FLOAT           reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    DOUBLE          reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    CHAR            reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    BOOLEAN         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    VOID            reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    IF              reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    WHILE           reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    FOR             reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    SWITCH          reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    $end            reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    RBRACE          reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    CASE            reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+    DEFAULT         reduce using rule 17 (declaracao_funcao -> tipo ID LPAREN parametros RPAREN bloco .)
+
+
+state 85
+
+    (19) parametros -> parametro COMMA parametros .
+
+    RPAREN          reduce using rule 19 (parametros -> parametro COMMA parametros .)
+
+
+state 86
+
+    (24) bloco -> LBRACE declaracao_list . RBRACE
+    (2) declaracao_list -> declaracao_list . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    RBRACE          shift and go to state 93
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    declaracao                     shift and go to state 32
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 87
+
+    (31) for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON . expressao RPAREN bloco
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 94
+
+state 88
+
+    (32) switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list . RBRACE
+    (33) case_list -> case_list . case
+    (35) case -> . CASE expressao COLON declaracao_list
+    (36) case -> . DEFAULT COLON declaracao_list
+
+    RBRACE          shift and go to state 95
+    CASE            shift and go to state 90
+    DEFAULT         shift and go to state 91
+
+    case                           shift and go to state 96
+
+state 89
+
+    (34) case_list -> case .
+
+    RBRACE          reduce using rule 34 (case_list -> case .)
+    CASE            reduce using rule 34 (case_list -> case .)
+    DEFAULT         reduce using rule 34 (case_list -> case .)
+
+
+state 90
+
+    (35) case -> CASE . expressao COLON declaracao_list
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+
+    expressao                      shift and go to state 97
+
+state 91
+
+    (36) case -> DEFAULT . COLON declaracao_list
+
+    COLON           shift and go to state 98
+
+
+state 92
+
+    (22) parametro -> tipo ID LBRACKET RBRACKET .
+
+    COMMA           reduce using rule 22 (parametro -> tipo ID LBRACKET RBRACKET .)
+    RPAREN          reduce using rule 22 (parametro -> tipo ID LBRACKET RBRACKET .)
+
+
+state 93
+
+    (24) bloco -> LBRACE declaracao_list RBRACE .
+
+    COMMENT         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    MULTI_COMMENT   reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    ID              reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    NUM_INT         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    NUM_DEC         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    TEXTO           reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    LPAREN          reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    PRINTLN         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    INT             reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    FLOAT           reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    DOUBLE          reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    CHAR            reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    BOOLEAN         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    VOID            reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    IF              reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    WHILE           reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    FOR             reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    SWITCH          reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    $end            reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    RBRACE          reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    CASE            reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+    DEFAULT         reduce using rule 24 (bloco -> LBRACE declaracao_list RBRACE .)
+
+
+state 94
+
+    (31) for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao . RPAREN bloco
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    RPAREN          shift and go to state 99
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 95
+
+    (32) switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .
+
+    COMMENT         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    MULTI_COMMENT   reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    ID              reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    NUM_INT         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    NUM_DEC         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    TEXTO           reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    LPAREN          reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    PRINTLN         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    INT             reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    FLOAT           reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    DOUBLE          reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    CHAR            reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    BOOLEAN         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    VOID            reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    IF              reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    WHILE           reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    FOR             reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    SWITCH          reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    $end            reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    RBRACE          reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    CASE            reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+    DEFAULT         reduce using rule 32 (switch -> SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE .)
+
+
+state 96
+
+    (33) case_list -> case_list case .
+
+    RBRACE          reduce using rule 33 (case_list -> case_list case .)
+    CASE            reduce using rule 33 (case_list -> case_list case .)
+    DEFAULT         reduce using rule 33 (case_list -> case_list case .)
+
+
+state 97
+
+    (35) case -> CASE expressao . COLON declaracao_list
+    (44) expressao -> expressao . PLUS expressao
+    (45) expressao -> expressao . MINUS expressao
+    (46) expressao -> expressao . TIMES expressao
+    (47) expressao -> expressao . DIV expressao
+    (48) expressao -> expressao . MOD expressao
+
+    COLON           shift and go to state 100
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+    TIMES           shift and go to state 36
+    DIV             shift and go to state 37
+    MOD             shift and go to state 38
+
+
+state 98
+
+    (36) case -> DEFAULT COLON . declaracao_list
+    (2) declaracao_list -> . declaracao_list declaracao
+    (3) declaracao_list -> . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    declaracao_list                shift and go to state 101
+    declaracao                     shift and go to state 3
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 99
+
+    (31) for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN . bloco
+    (24) bloco -> . LBRACE declaracao_list RBRACE
+
+    LBRACE          shift and go to state 78
+
+    bloco                          shift and go to state 102
+
+state 100
+
+    (35) case -> CASE expressao COLON . declaracao_list
+    (2) declaracao_list -> . declaracao_list declaracao
+    (3) declaracao_list -> . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    expressao                      shift and go to state 8
+    declaracao_list                shift and go to state 103
+    declaracao                     shift and go to state 3
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 101
+
+    (36) case -> DEFAULT COLON declaracao_list .
+    (2) declaracao_list -> declaracao_list . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    RBRACE          reduce using rule 36 (case -> DEFAULT COLON declaracao_list .)
+    CASE            reduce using rule 36 (case -> DEFAULT COLON declaracao_list .)
+    DEFAULT         reduce using rule 36 (case -> DEFAULT COLON declaracao_list .)
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    declaracao                     shift and go to state 32
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    expressao                      shift and go to state 8
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+
+state 102
+
+    (31) for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .
+
+    COMMENT         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    MULTI_COMMENT   reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    ID              reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    NUM_INT         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    NUM_DEC         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    TEXTO           reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    LPAREN          reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    PRINTLN         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    INT             reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    FLOAT           reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    DOUBLE          reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    CHAR            reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    BOOLEAN         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    VOID            reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    IF              reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    WHILE           reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    FOR             reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    SWITCH          reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    $end            reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    RBRACE          reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    CASE            reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+    DEFAULT         reduce using rule 31 (for -> FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco .)
+
+
+state 103
+
+    (35) case -> CASE expressao COLON declaracao_list .
+    (2) declaracao_list -> declaracao_list . declaracao
+    (4) declaracao -> . declaracao_variavel
+    (5) declaracao -> . declaracao_funcao
+    (6) declaracao -> . estrutura_controle
+    (7) declaracao -> . comentario
+    (8) declaracao -> . expressao SEMICOLON
+    (9) declaracao_variavel -> . tipo ID SEMICOLON
+    (10) declaracao_variavel -> . tipo ID EQUALS expressao SEMICOLON
+    (17) declaracao_funcao -> . tipo ID LPAREN parametros RPAREN bloco
+    (25) estrutura_controle -> . if
+    (26) estrutura_controle -> . while
+    (27) estrutura_controle -> . for
+    (28) estrutura_controle -> . switch
+    (37) comentario -> . COMMENT
+    (38) comentario -> . MULTI_COMMENT
+    (39) expressao -> . ID
+    (40) expressao -> . NUM_INT
+    (41) expressao -> . NUM_DEC
+    (42) expressao -> . TEXTO
+    (43) expressao -> . ID EQUALS expressao
+    (44) expressao -> . expressao PLUS expressao
+    (45) expressao -> . expressao MINUS expressao
+    (46) expressao -> . expressao TIMES expressao
+    (47) expressao -> . expressao DIV expressao
+    (48) expressao -> . expressao MOD expressao
+    (49) expressao -> . LPAREN expressao RPAREN
+    (50) expressao -> . PRINTLN LPAREN TEXTO RPAREN
+    (11) tipo -> . INT
+    (12) tipo -> . FLOAT
+    (13) tipo -> . DOUBLE
+    (14) tipo -> . CHAR
+    (15) tipo -> . BOOLEAN
+    (16) tipo -> . VOID
+    (29) if -> . IF LPAREN expressao RPAREN bloco
+    (30) while -> . WHILE LPAREN expressao RPAREN bloco
+    (31) for -> . FOR LPAREN expressao SEMICOLON expressao SEMICOLON expressao RPAREN bloco
+    (32) switch -> . SWITCH LPAREN expressao RPAREN LBRACE case_list RBRACE
+
+    RBRACE          reduce using rule 35 (case -> CASE expressao COLON declaracao_list .)
+    CASE            reduce using rule 35 (case -> CASE expressao COLON declaracao_list .)
+    DEFAULT         reduce using rule 35 (case -> CASE expressao COLON declaracao_list .)
+    COMMENT         shift and go to state 16
+    MULTI_COMMENT   shift and go to state 17
+    ID              shift and go to state 10
+    NUM_INT         shift and go to state 18
+    NUM_DEC         shift and go to state 19
+    TEXTO           shift and go to state 20
+    LPAREN          shift and go to state 11
+    PRINTLN         shift and go to state 21
+    INT             shift and go to state 22
+    FLOAT           shift and go to state 23
+    DOUBLE          shift and go to state 24
+    CHAR            shift and go to state 25
+    BOOLEAN         shift and go to state 26
+    VOID            shift and go to state 27
+    IF              shift and go to state 28
+    WHILE           shift and go to state 29
+    FOR             shift and go to state 30
+    SWITCH          shift and go to state 31
+
+    expressao                      shift and go to state 8
+    declaracao                     shift and go to state 32
+    declaracao_variavel            shift and go to state 4
+    declaracao_funcao              shift and go to state 5
+    estrutura_controle             shift and go to state 6
+    comentario                     shift and go to state 7
+    tipo                           shift and go to state 9
+    if                             shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    switch                         shift and go to state 15
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 55 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 55 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 55 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 55 resolved as shift

@@ -1,0 +1,4 @@
+int a = 2;
+float b = 5;
+resultado = a/b;
+
