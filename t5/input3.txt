@@ -1,0 +1,29 @@
+int a;
+a = 5;
+float b;
+b = 3.14;
+char c;
+c = 'x';
+boolean d;
+d = true;
+int e;
+e = a + 10;
+
+void myFunction() {
+    println("Tudo está funcionando corretamente!");
+}
+
+int foo(int x, int y) {
+    return x + y;
+}
+
+int result;
+result = foo(3, 4);
+
+while (e < 20) {
+    e = e + 1;
+}
+
+if (d) {
+    println("Variável d é verdadeira");
+}

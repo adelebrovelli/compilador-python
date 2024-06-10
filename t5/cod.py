@@ -408,5 +408,5 @@ def test_parser(file_path):
         print("Erros de sintaxe detectados. Análise semântica abortada.")
 
 # Código para ler o arquivo input.txt
-file_path = 'input.txt'
+file_path = 'input3.txt'
 test_parser(file_path)
