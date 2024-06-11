@@ -1,29 +1,22 @@
 int a;
-a = 5;
-float b;
-b = 3.14;
-char c;
-c = 'x';
-boolean d;
-d = true;
-int e;
-e = a + 10;
+a = 5 + "string"; // Erro 1: Tipos incompatíveis
 
-void myFunction() {
-    println("Tudo está funcionando corretamente!");
-}
+x = 10; // Erro 2: Variável não declarada
+
+int b;
+b = "string"; // Erro 3: Incompatibilidade de tipos na atribuição
 
 int foo(int x, int y) {
     return x + y;
 }
 
-int result;
-result = foo(3, 4);
+int c;
+c = foo(1, 2, 3); // Erro 4: A função 'foo' espera 2 argumentos
 
-while (e < 20) {
-    e = e + 1;
+void myFunction() {
+    return;
+    int d = 10; // Aviso 1: Código inacessível
 }
 
-if (d) {
-    println("Variável d é verdadeira");
-}
+int e;
+e = e + 1; // Erro 6: Variável usada antes da inicialização
